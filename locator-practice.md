@@ -1,6 +1,6 @@
 # Locator Practice — Sauce Demo
 
-Các selector bên dưới dùng để hoàn thành 10 bài tập locator (CSS / XPath), tương ứng với trang Inventory của Sauce Demo.
+The selectors below are used to complete the 10 locator exercises (CSS / XPath) for the Sauce Demo Inventory page.
 
 1. Shopping cart link/icon
    - CSS: `.shopping_cart_link`
@@ -45,5 +45,5 @@ Các selector bên dưới dùng để hoàn thành 10 bài tập locator (CSS /
     - Playwright: `page.locator('//img[contains(@alt, "Backpack")]')`
 
 Notes:
-- Một số selector dùng cú pháp Playwright đặc thù (ví dụ `:has-text()`), nhưng tương đương CSS/XPath cũng được liệt kê.
-- File này phản ánh các locator hiện đang được sử dụng trong `page-objects/pages/inventory.page.ts`.
+- Some selectors use Playwright-specific syntax (for example `:has-text()`), but equivalent CSS/XPath are also listed.
+- This file reflects the locators currently used in `page-objects/pages/inventory.page.ts`.

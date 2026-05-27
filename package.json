@@ -1,7 +1,7 @@
 {
   "name": "automation-fw",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Playwright-based UI test automation framework built with TypeScript, featuring the Page Object Model pattern, custom fixtures, and centralized wait configuration.",
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test",
@@ -12,12 +12,21 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.59.1",
     "@types/node": "^25.5.0",
     "dotenv": "^17.3.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },
-  "dependencies": {
-  }
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yenvo-jpg/yv-playwright.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yenvo-jpg/yv-playwright/issues"
+  },
+  "homepage": "https://github.com/yenvo-jpg/yv-playwright#readme"
 }

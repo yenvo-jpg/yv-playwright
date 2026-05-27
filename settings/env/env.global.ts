@@ -20,8 +20,8 @@ export default class Env {
     return process.env[key] || defaultValue;
   }
 
-  static get USERNAME(): string {
-    return this.getEnvVar('USERNAME');
+  static get MY_USERNAME(): string {
+    return this.getEnvVar('MY_USERNAME');
   }
 
   static get PASSWORD(): string {

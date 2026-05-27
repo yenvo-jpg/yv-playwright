@@ -13,7 +13,9 @@ const expectedProductNames = [
 const addedProducts = ["Sauce Labs Backpack", "Sauce Labs Onesie"];
 
 test("Default sort state after login", async ({ signInPage, inventoryPage }) => {
-    await signInPage.login(Env.MY_USERNAME, Env.PASSWORD);
+    await signInPage.navigate();
+    await signInPage.loginAsDefaultUser();
+    await signInPage.expectLoginSuccess();
     await inventoryPage.waitForInventoryPage();
 
     await expect(inventoryPage.elements.shoppingCartLink()).toBeVisible();
@@ -27,7 +29,9 @@ test("Default sort state after login", async ({ signInPage, inventoryPage }) => 
 });
 
 test("Sort resets after logout and re-login", async ({ signInPage, inventoryPage }) => {
-    await signInPage.login(Env.MY_USERNAME, Env.PASSWORD);
+    await signInPage.navigate();
+    await signInPage.loginAsDefaultUser();
+    await signInPage.expectLoginSuccess();
     await inventoryPage.waitForInventoryPage();
 
     await inventoryPage.selectSortOption("Name (Z to A)");
@@ -47,7 +51,9 @@ test("Sort resets after logout and re-login", async ({ signInPage, inventoryPage
 });
 
 test("Sort works correctly with items in cart and equal-price products maintain stable order", async ({ signInPage, inventoryPage }) => {
-    await signInPage.login(Env.MY_USERNAME, Env.PASSWORD);
+    await signInPage.navigate();
+    await signInPage.loginAsDefaultUser();
+    await signInPage.expectLoginSuccess();
     await inventoryPage.waitForInventoryPage();
 
     await inventoryPage.clickAddToCartByName("Sauce Labs Backpack");

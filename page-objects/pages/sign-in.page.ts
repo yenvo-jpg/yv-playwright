@@ -9,14 +9,24 @@ export class SignInPage {
         usernameInput: () => this.page.getByRole("textbox", { name: "Username" }),
         passwordInput: () => this.page.getByRole("textbox", { name: "Password" }),
         loginButton: () => this.page.getByRole("button", { name: "Login" }),
+        errorMessage: () => this.page.getByTestId("error"),
     };
 
-    async login(username: string, password: string) {
+    async navigate() {
         await this.page.goto(Env.WEB_URL);
-        await this.page.waitForLoadState('load', { timeout: Wait.LONG });
-        
+    }
+
+    async login(username: string, password: string) {
         await this.elements.usernameInput().fill(username);
         await this.elements.passwordInput().fill(password);
         await this.elements.loginButton().click();
+    }
+
+    async loginAsDefaultUser() {
+        await this.login(Env.MY_USERNAME, Env.PASSWORD);
+    }
+
+    async expectLoginSuccess() {
+        await this.page.waitForURL("**/inventory.html");
     }
 }

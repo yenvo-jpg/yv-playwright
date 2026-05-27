@@ -3,7 +3,9 @@ import Env from "settings/env/env.global";
 import { test, expect } from "settings/fixtures/ui.fixture";
 
 test("Sauce Demo inventory selectors exercise", async ({ signInPage, inventoryPage }) => {
-    await signInPage.login(Env.MY_USERNAME, Env.PASSWORD);
+    await signInPage.navigate();
+    await signInPage.loginAsDefaultUser();
+    await signInPage.expectLoginSuccess();
     await inventoryPage.waitForInventoryPage();
 
     await expect(inventoryPage.elements.shoppingCartLink()).toBeVisible();

@@ -4,6 +4,7 @@ The selectors below are used to complete the 10 locator exercises (CSS / XPath) 
 
 1. Shopping cart link/icon
    - CSS: `.shopping_cart_link`
+   - XPath: `//a[contains(@class, "shopping_cart_link")]`
    - Playwright: `page.locator('.shopping_cart_link')`
 
 2. All "Add to cart" buttons
@@ -13,10 +14,12 @@ The selectors below are used to complete the 10 locator exercises (CSS / XPath) 
 
 3. Sort dropdown
    - CSS: `.product_sort_container`
+   - XPath: `//select[contains(@class, "product_sort_container")]`
    - Playwright: `page.locator('.product_sort_container')`
 
 4. All product images
    - CSS: `.inventory_item_img img`
+   - XPath: `//div[@class="inventory_item_img"]//img` or `//img[contains(@class, "inventory_item_img")]`
    - Playwright: `page.locator('.inventory_item_img img')`
 
 5. Items whose price contains "$15.99"
@@ -25,14 +28,17 @@ The selectors below are used to complete the 10 locator exercises (CSS / XPath) 
 
 6. "Add to cart" button for "Sauce Labs Backpack"
    - CSS / attribute: `button[data-test="add-to-cart-sauce-labs-backpack"]`
+   - XPath: `//button[@data-test="add-to-cart-sauce-labs-backpack"]`
    - Playwright: `page.locator('button[data-test="add-to-cart-sauce-labs-backpack"]')`
 
 7. "Remove" button after adding "Sauce Labs Onesie"
    - CSS / attribute: `button[data-test="remove-sauce-labs-onesie"]`
+   - XPath: `//button[@data-test="remove-sauce-labs-onesie"]`
    - Playwright: `page.locator('button[data-test="remove-sauce-labs-onesie"]')`
 
 8. All buttons with `data-test` starting with "add-to-cart"
    - CSS: `button[data-test^="add-to-cart"]`
+   - XPath: `//button[starts-with(@data-test, "add-to-cart")]`
    - Playwright: `page.locator('button[data-test^="add-to-cart"]')`
 
 9. All product names that do NOT contain "Sauce Labs"

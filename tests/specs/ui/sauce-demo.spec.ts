@@ -35,7 +35,8 @@ test("Inventory selectors exercise", async ({ signInPage, inventoryPage }) => {
     await expect(inventoryPage.elements.removeSauceLabsOnesieButton()).toBeVisible();
 
     // Validation: ensure selector filters work correctly for product names and image alt text
-    await expect(inventoryPage.elements.productNamesNoSauceLabs()).toHaveCount(0);
+    // There is one product name without "Sauce Labs" (Test.allTheThings() T-Shirt (Red)).
+    await expect(inventoryPage.elements.productNamesNoSauceLabs()).toHaveCount(1);
     await expect(inventoryPage.elements.productImageByAltPartial()).toHaveCount(1);
 });
 

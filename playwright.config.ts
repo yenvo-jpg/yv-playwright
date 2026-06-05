@@ -27,6 +27,7 @@ export default defineConfig({
         video: "retain-on-failure",
         actionTimeout: Wait.ACTION,
         navigationTimeout: Wait.NAVIGATION,
+        testIdAttribute: "data-test",
     },
 
     projects: [

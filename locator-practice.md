@@ -1,55 +1,55 @@
 # Locator Practice — Sauce Demo
 
-The selectors below are used to complete the 10 locator exercises (CSS / XPath) for the Sauce Demo Inventory page.
+The selectors below are updated for the Sauce Demo page using `data-test` where available.
+Playwright is configured with `testIdAttribute: "data-test"` in `playwright.config.ts`, so `page.getByTestId("...")` resolves to `data-test="..."`.
 
 1. Shopping cart link/icon
-   - CSS: `.shopping_cart_link`
-   - XPath: `//a[contains(@class, "shopping_cart_link")]`
-   - Playwright: `page.locator('.shopping_cart_link')`
+   - CSS: `a[data-test="shopping-cart-link"]`
+   - XPath: `//a[@data-test="shopping-cart-link"]`
+   - Playwright: `page.getByTestId('shopping-cart-link')`
 
 2. All "Add to cart" buttons
-   - CSS: `button.btn_inventory`
-   - XPath: `//button[contains(normalize-space(.), "Add to cart")]`
-   - Playwright: `page.locator('button.btn_inventory:has-text("Add to cart")')`
+   - CSS: `button[data-test^="add-to-cart"]`
+   - XPath: `//button[starts-with(@data-test, "add-to-cart")]`
+   - Playwright: `page.getByTestId(/add-to-cart-/)`
 
 3. Sort dropdown
-   - CSS: `.product_sort_container`
-   - XPath: `//select[contains(@class, "product_sort_container")]`
-   - Playwright: `page.locator('.product_sort_container')`
+   - CSS: `select[data-test="product-sort-container"]`
+   - XPath: `//select[@data-test="product-sort-container"]`
+   - Playwright: `page.getByTestId('product-sort-container')`
 
 4. All product images
-   - CSS: `.inventory_item_img img`
-   - XPath: `//div[@class="inventory_item_img"]//img` or `//img[contains(@class, "inventory_item_img")]`
-   - Playwright: `page.locator('.inventory_item_img img')`
+   - CSS: `img[data-test$="-img"]`
+   - XPath: `//img[ends-with(@data-test, "-img")]`
+   - Playwright: `page.getByTestId(/-img$/)`
 
 5. Items whose price contains "$15.99"
-   - XPath: `//div[contains(@class, "inventory_item_price") and contains(normalize-space(.), "$15.99")]`
-   - Playwright: `page.locator('//div[contains(@class, "inventory_item_price") and contains(normalize-space(.), "$15.99")]')`
+   - CSS: `div[data-test="inventory-item-price"]`
+   - XPath: `//div[@data-test="inventory-item-price" and normalize-space()="$15.99"]`
+   - Playwright: `page.locator('[data-test="inventory-item-price"]', { hasText: '$15.99' })`
 
 6. "Add to cart" button for "Sauce Labs Backpack"
    - CSS / attribute: `button[data-test="add-to-cart-sauce-labs-backpack"]`
    - XPath: `//button[@data-test="add-to-cart-sauce-labs-backpack"]`
-   - Playwright: `page.locator('button[data-test="add-to-cart-sauce-labs-backpack"]')`
+   - Playwright: `page.getByTestId('add-to-cart-sauce-labs-backpack')`
 
 7. "Remove" button after adding "Sauce Labs Onesie"
    - CSS / attribute: `button[data-test="remove-sauce-labs-onesie"]`
    - XPath: `//button[@data-test="remove-sauce-labs-onesie"]`
-   - Playwright: `page.locator('button[data-test="remove-sauce-labs-onesie"]')`
+   - Playwright: `page.getByTestId('remove-sauce-labs-onesie')`
 
 8. All buttons with `data-test` starting with "add-to-cart"
    - CSS: `button[data-test^="add-to-cart"]`
    - XPath: `//button[starts-with(@data-test, "add-to-cart")]`
-   - Playwright: `page.locator('button[data-test^="add-to-cart"]')`
+   - Playwright: `page.getByTestId(/add-to-cart-/)`
 
 9. All product names that do NOT contain "Sauce Labs"
-   - XPath: `//div[@class="inventory_item_name" and not(contains(text(), "Sauce Labs"))]`
-   - Playwright: `page.locator('//div[@class="inventory_item_name" and not(contains(text(), "Sauce Labs"))]')`
+   - CSS: `div[data-test="inventory-item-name"]`
+   - XPath: `//div[@data-test="inventory-item-name" and not(contains(normalize-space(), "Sauce Labs"))]`
+   - Playwright: `page.getByTestId('inventory-item-name').filter({ hasNotText: 'Sauce Labs' })`
 
-10. Select a product's image by matching alt text partially
-    - CSS: `img[alt*="Backpack"]`
-    - XPath: `//img[contains(@alt, "Backpack")]`
-    - Playwright: `page.locator('//img[contains(@alt, "Backpack")]')`
+10. Product image with partial alt text match
+   - CSS: `img[data-test$="-img"][alt*="Backpack"]`
+   - XPath: `//img[ends-with(@data-test, "-img") and contains(@alt, "Backpack")]`
+   - Playwright: `page.locator('img[data-test$="-img"][alt*="Backpack"]')`
 
-Notes:
-- Some selectors use Playwright-specific syntax (for example `:has-text()`), but equivalent CSS/XPath are also listed.
-- This file reflects the locators currently used in `page-objects/pages/inventory.page.ts`.

@@ -6,15 +6,15 @@ export class InventoryPage {
 
     elements = {
         shoppingCartLink: () => this.page.locator('.shopping_cart_link'),
-        allAddToCartButtons: () => this.page.locator('button.btn_inventory:has-text("Add to cart")'),
+        allAddToCartButtons: () => this.page.locator('[data-test^="add-to-cart"]'),
         sortDropdown: () => this.page.locator('.product_sort_container'),
         productImages: () => this.page.locator('.inventory_item_img img'),
-        price15_99: () => this.page.locator('//div[contains(@class, "inventory_item_price") and contains(normalize-space(.), "$15.99")]'),
-        addSauceLabsBackpackButton: () => this.page.locator('button[data-test="add-to-cart-sauce-labs-backpack"]'),
-        removeSauceLabsOnesieButton: () => this.page.locator('button[data-test="remove-sauce-labs-onesie"]'),
-        addToCartDataTestButtons: () => this.page.locator('button[data-test^="add-to-cart"]'),
-        productNamesNoSauceLabs: () => this.page.locator('//div[@class="inventory_item_name" and not(contains(text(), "Sauce Labs"))]'),
-        productImageByAltPartial: () => this.page.locator('//img[contains(@alt, "Backpack")]'),
+        price15_99: () => this.page.locator('.inventory_item_price', { hasText: '$15.99' }),
+        addSauceLabsBackpackButton: () => this.page.getByTestId('add-to-cart-sauce-labs-backpack'),
+        removeSauceLabsOnesieButton: () => this.page.getByTestId('remove-sauce-labs-onesie'),
+        addToCartDataTestButtons: () => this.page.locator('[data-test^="add-to-cart"]'),
+        productNamesNoSauceLabs: () => this.page.locator('.inventory_item_name').filter({ hasNotText: 'Sauce Labs' }),
+        productImageByAltPartial: () => this.page.locator('.inventory_item_img img[alt*="Backpack"]'),
         inventoryList: () => this.page.locator('.inventory_list'),
         inventoryItemNames: () => this.page.locator('.inventory_item_name'),
         selectedSortOption: () => this.page.locator('.product_sort_container option:checked'),
@@ -29,7 +29,7 @@ export class InventoryPage {
     }
 
     async addSauceLabsOnesieToCart() {
-        await this.page.locator('button[data-test="add-to-cart-sauce-labs-onesie"]').click();
+        await this.page.getByTestId('add-to-cart-sauce-labs-onesie').click();
     }
 
     async clickAddToCartByName(name: string) {
